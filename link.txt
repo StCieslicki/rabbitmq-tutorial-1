@@ -1,1 +1,1 @@
-https://www.rabbitmq.com/tutorials/tutorial-two-php.html
+https://www.rabbitmq.com/tutorials/tutorial-three-php.html

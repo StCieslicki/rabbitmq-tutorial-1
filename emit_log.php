@@ -30,16 +30,15 @@ $connection = new AMQPStreamConnection(
 
 $channel = $connection->channel();
 
-$channel->queue_declare('task_queue', false, true, false, false);
+$channel->exchange_declare('logs', 'fanout', false, false, false);
 
 $data = implode(' ', array_slice($argv, 1));
 if(empty($data)) {
     $data = "Hello World!";
 }
-$msg = new AMQPMessage($data,
-    array('delivery_mode' => 2)
-);
-$channel->basic_publish($msg, '', 'task_queue');
+$msg = new AMQPMessage($data);
+
+$channel->basic_publish($msg, 'logs');
 
 echo " [x] Sent ", $data, "\n";
 
